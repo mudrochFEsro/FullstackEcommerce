@@ -1,16 +1,14 @@
 import {Text} from '@/components/ui/text'
 import {useLocalSearchParams} from "expo-router";
-import {useEffect} from "react";
-
+import products from '@/assets/products.json'
 export default function ProductDetails() {
-    const params = useLocalSearchParams();
-    const { id } = params;
-    useEffect(() => {
-        console.log("Params:", params);
-        console.log("ID:", id);
-    }, [params, id]);
+    const { id } = useLocalSearchParams();
 
+    const product = products.find((product) => product.id === Number(id));
 
-    return <Text>Product details: {id}</Text>
+    if (!product) {
+        return <Text>Product not found</Text>
+    }
 
+    return <Text>Product details: {product.name}</Text>
 }
