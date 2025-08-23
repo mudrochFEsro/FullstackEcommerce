@@ -12,42 +12,26 @@ import {Pressable} from "react-native";
 // @ts-ignore
 export default function ProductListItem({product}) {
     return (
-        <Link href={`/products/${product.id}`} asChild>
+        <Link href={`/products/${product.id}`} asChild className="flex">
             <Pressable className='flex-1'>
-                <Card className="p-4 rounded-lg max-w-[360px] ">
+                <Card className="p-5 rounded-lg max-w-[360px] flex space-between">
                     <Image
                         source={{
                             uri: product.image,
                         }}
-                        className="h-[260px] w-full rounded-md aspect-[4/3]"
+                        className="h-[280px] rounded-md w-full"
                         alt={`${product.name} image`}
                         resizeMode="contain"
                     />
-                    <Text className="text-sm font-normal mb-2 text-typography-700">
-                        {product.name}
+                    <Text
+                        className="text-sm font-normal text-typography-700 h-[60px]"
+                    >
+                       product.name
+
                     </Text>
-                    <VStack className="mb-0">
-                        <Heading size="xl">
+                        <Heading size="md" className="pt-4">
                             ${product.price}
                         </Heading>
-                        {/*<Text size="sm">*/}
-                        {/*    {product.description}*/}
-                        {/*</Text>*/}
-                    </VStack>
-                    {/*<Box className="flex-col sm:flex-row">*/}
-                    {/*    <Button className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">*/}
-                    {/*        <ButtonText size="sm">Add to cart</ButtonText>*/}
-                    {/*    </Button>*/}
-                    {/*    <Button*/}
-                    {/*        variant="outline"*/}
-                    {/*        className="px-4 py-2 border-outline-300 sm:flex-1"*/}
-                    {/*    >*/}
-                    {/*        <ButtonText size="sm" className="text-typography-600">*/}
-                    {/*            Wishlist*/}
-                    {/*        </ButtonText>*/}
-                    {/*    </Button>*/}
-                    {/*</Box>*/}
-
                 </Card>
             </Pressable>
         </Link>
