@@ -8,15 +8,30 @@ import {Heading} from "@/components/ui/heading";
 import {Box} from "@/components/ui/box";
 import {Button} from "@/components/ui/button";
 import {ButtonText} from "@/components/ui/button";
+import {useQuery} from "@tanstack/react-query";
+import {fetchProductById} from "@/api/product";
+import {ActivityIndicator, View} from "react-native";
 
 export default function ProductDetails() {
     const {id} = useLocalSearchParams();
 
-    const product = products.find((product) => product.id === Number(id));
+    const {data: product, isLoading, error} = useQuery({
+        queryKey: ['products', id],
+        queryFn: () => fetchProductById(Number(id))
+    });
 
-    if (!product) {
-        return <Text>Product not found</Text>
+    if(isLoading) {
+        return (
+            <View className="flex-1 justify-center items-center">
+                <ActivityIndicator size="large" />
+            </View>
+        );
     }
+
+    if(error) {
+        return <Text>Product not found</Text>;
+    }
+
 
     return (
         <Box className="flex-1 items-center p-3">
