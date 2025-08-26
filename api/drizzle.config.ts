@@ -9,7 +9,7 @@ export default defineConfig({
   ],
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    url: process.env.ECOMMARCE_MOBILE_DATABASE_URL!,
   },
   verbose: true,
   strict: true,
