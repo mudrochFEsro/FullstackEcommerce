@@ -19,8 +19,8 @@ export default function ProductDetails() {
     // @ts-ignore
     const addProduct = useCart((state) => state.addProduct);
     // @ts-ignore
-    const cartItems = useCart(state => state.items);
-    console.log(JSON.stringify(cartItems, null, 2));
+    // const cartItems = useCart(state => state.items);
+    // console.log(JSON.stringify(cartItems, null, 2));
 
     const addToCart = () => {
         addProduct(product);

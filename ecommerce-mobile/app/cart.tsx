@@ -8,15 +8,14 @@ export default function CartScreen() {
     // @ts-ignore
     const items = useCart(state => state.items);
 
-    console.log(items);
-
     return (
         <FlatList
+            contentContainerClassName='gap-2 max-w-[960px] w-full mx-auto'
             data={items}
             renderItem={({item}) => (
                 <HStack className='bg-white p-3'>
                     <VStack space='sm'>
-                        <Text>{item.product.name}</Text>
+                        <Text bold>{item.product.name}</Text>
                         <Text>{item.product.price}</Text>
                     </VStack>
                     <Text className='ml-auto'>{item.quantity}</Text>
