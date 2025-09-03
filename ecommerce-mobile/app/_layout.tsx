@@ -1,11 +1,11 @@
-import {Link, Stack} from "expo-router";
+import {Link, router, Stack} from "expo-router";
 import "@/global.css";
 import {QueryClientProvider} from "@tanstack/react-query";
 import {QueryClient} from "@tanstack/react-query";
 import {GluestackUIProvider} from "@/components/ui/gluestack-ui-provider";
 import {Icon} from "@/components/ui/icon"
-import {ShoppingCartIcon} from "lucide-react-native";
-import {Pressable} from "react-native";
+import {ArrowLeftIcon, ShoppingCartIcon} from "lucide-react-native";
+import {Pressable, TouchableOpacity} from "react-native";
 import {useCart} from "@/store/cartStore";
 import {Text} from "@/components/ui/text";
 
@@ -22,19 +22,39 @@ export default function RootLayout() {
                 <Stack screenOptions={{
                     headerRight: () => (
                         <Link href={'/cart'} asChild>
-                            <Pressable className='flex-row gap-2 items-center lg:pr-4r'>
+                            <Pressable className='flex-row gap-2 items-center web:pr-4'>
                                 <Icon as={ShoppingCartIcon}/>
                                 <Text>{cartItemsNum}</Text>
                             </Pressable>
                         </Link>
                     )
                 }}>
-                    <Stack.Screen name="index" options={{
-                        title: "Shop",
-                    }}/>
-                    <Stack.Screen name="products/[id]" options={{
-                        title: "Product",
-                    }}/>
+
+                    <Stack.Screen
+                        name="index"
+                        options={{
+                            headerLeft: () => (
+                                <TouchableOpacity
+                                    className="flex-row items-center web:pl-4"
+                                >
+                                    <Text className="text-base font-semibold text-typography-900">
+                                        Shop
+                                    </Text>
+                                </TouchableOpacity>
+                            ),
+                            headerTitle: "",
+                        }}
+                    />
+                    <Stack.Screen
+                        name="products/[id]"
+                        options={{
+                            headerLeft: () => (
+                                <></>
+                            ),
+                            headerTitle: "",
+                        }}
+                    />
+
                 </Stack>
             </GluestackUIProvider>
         </QueryClientProvider>

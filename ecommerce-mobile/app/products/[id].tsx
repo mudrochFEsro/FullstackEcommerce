@@ -1,6 +1,5 @@
 import {Text} from '@/components/ui/text'
-import {Stack, useLocalSearchParams} from "expo-router";
-import products from '@/assets/products.json'
+import {router, Stack, useLocalSearchParams} from "expo-router";
 import {Card} from "@/components/ui/card";
 import {Image} from "@/components/ui/image";
 import {VStack} from "@/components/ui/vstack";
@@ -10,8 +9,10 @@ import {Button} from "@/components/ui/button";
 import {ButtonText} from "@/components/ui/button";
 import {useQuery} from "@tanstack/react-query";
 import {fetchProductById} from "@/api/product";
-import {ActivityIndicator, View} from "react-native";
+import {ActivityIndicator, TouchableOpacity, View} from "react-native";
 import {useCart} from "@/store/cartStore";
+import {ArrowLeftIcon} from "lucide-react-native";
+import {Icon} from "@/components/ui/icon"
 
 export default function ProductDetails() {
     const {id} = useLocalSearchParams();
@@ -46,7 +47,22 @@ export default function ProductDetails() {
 
     return (
         <Box className="flex-1 items-center p-3">
-            <Stack.Screen options={{title: product.name}}/>
+            <Stack.Screen
+                options={{
+                    headerLeft: () => (
+                        <TouchableOpacity
+                            onPress={() => router.back()}
+                            className="flex-row items-center web:pl-4"
+                        >
+                            <Icon as={ArrowLeftIcon} size="lg" className="mr-2 text-typography-900" />
+                            <Text className="text-base font-semibold text-typography-900">
+                                {product.name}
+                            </Text>
+                        </TouchableOpacity>
+                    ),
+                    headerTitle: "",
+                }}
+            />
             <Card className="p-5 rounded-lg h-full max-w-[960px] w-full flex-1">
                 <Box>
                     <Image
