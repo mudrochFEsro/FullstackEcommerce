@@ -8,6 +8,7 @@ import {ArrowLeftIcon, ShoppingCartIcon} from "lucide-react-native";
 import {Pressable, TouchableOpacity} from "react-native";
 import {useCart} from "@/store/cartStore";
 import {Text} from "@/components/ui/text";
+import {Box} from "@/components/ui/box";
 
 
 const queryClient = new QueryClient();
@@ -22,11 +23,12 @@ export default function RootLayout() {
                 <Stack screenOptions={{
                     headerRight: () => (
                         <Link href={'/cart'} asChild>
-                            <Pressable className='flex-row gap-2 items-center web:pr-4'>
+                            <TouchableOpacity className='flex-row gap-2 items-center web:pr-4'>
                                 <Icon as={ShoppingCartIcon}/>
                                 <Text>{cartItemsNum}</Text>
-                            </Pressable>
+                            </TouchableOpacity>
                         </Link>
+
                     )
                 }}>
 
@@ -34,13 +36,13 @@ export default function RootLayout() {
                         name="index"
                         options={{
                             headerLeft: () => (
-                                <TouchableOpacity
+                                <Box
                                     className="flex-row items-center web:pl-4"
                                 >
                                     <Text className="text-base font-semibold text-typography-900">
                                         Shop
                                     </Text>
-                                </TouchableOpacity>
+                                </Box>
                             ),
                             headerTitle: "",
                         }}

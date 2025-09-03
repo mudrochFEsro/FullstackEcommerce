@@ -11,7 +11,13 @@ import {ArrowLeftIcon} from "lucide-react-native";
 export default function CartScreen() {
     // @ts-ignore
     const items = useCart(state => state.items);
+    // @ts-ignore
+    const resetCart = useCart(state => state.resetCart);
     const router = useRouter();
+
+    const onCheckout = async () => {
+        resetCart()
+    }
 
     return (
         <>
@@ -44,7 +50,7 @@ export default function CartScreen() {
                     </HStack>
                 )}
                 ListFooterComponent={() => (
-                    <Button>
+                    <Button onPress={onCheckout}>
                         <ButtonText>Checkout</ButtonText>
                     </Button>
                 )}

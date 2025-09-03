@@ -6,5 +6,7 @@ export const useCart = create((set) => ({
     addProduct: (product: any) =>
         set((state: { items: any; }) => ({
             items: [...state.items, {product, quantity: 1}],
-        }))
+        })),
+
+    resetCart: () => set({items: []}),
 }));
