@@ -46,7 +46,7 @@ export default function ProductDetails() {
 
 
     return (
-        <Box className="flex-1 items-center p-3">
+        <Box className="flex-1 items-center ">
             <Stack.Screen
                 options={{
                     headerLeft: () => (

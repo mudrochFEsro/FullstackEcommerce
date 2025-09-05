@@ -28,7 +28,7 @@ export default function CartScreen() {
                             onPress={() => router.back()}
                             className="flex-row items-center web:pl-4"
                         >
-                            <Icon as={ArrowLeftIcon} size="lg" className="mr-2 text-typography-900" />
+                            <Icon as={ArrowLeftIcon} size="lg" className="mr-2 text-typography-900"/>
                             <Text className="text-base font-semibold text-typography-900">
                                 Back
                             </Text>
@@ -38,7 +38,7 @@ export default function CartScreen() {
                 }}
             />
             <FlatList
-                contentContainerClassName='gap-2 max-w-[960px] w-full mx-auto'
+                contentContainerClassName='gap-2 max-w-[960px] w-full mx-auto p-2'
                 data={items}
                 renderItem={({item}) => (
                     <HStack className='bg-white p-3'>
@@ -49,11 +49,14 @@ export default function CartScreen() {
                         <Text className='ml-auto'>{item.quantity}</Text>
                     </HStack>
                 )}
-                ListFooterComponent={() => (
-                    <Button onPress={onCheckout}>
-                        <ButtonText>Checkout</ButtonText>
-                    </Button>
-                )}
+                ListFooterComponent={
+                    items.length > 0 ? (
+                        <Button onPress={onCheckout}>
+                            <ButtonText>Checkout</ButtonText>
+                        </Button>
+                    ) : null
+                }
+
             />
         </>
     )
