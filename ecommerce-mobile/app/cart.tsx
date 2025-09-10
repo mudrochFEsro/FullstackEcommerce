@@ -9,9 +9,7 @@ import {Icon} from "@/components/ui/icon";
 import {ArrowLeftIcon} from "lucide-react-native";
 
 export default function CartScreen() {
-    // @ts-ignore
     const items = useCart(state => state.items);
-    // @ts-ignore
     const resetCart = useCart(state => state.resetCart);
     const router = useRouter();
 
